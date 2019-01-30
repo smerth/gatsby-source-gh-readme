@@ -16,6 +16,11 @@
     "github",
     "readme files"
   ],
+  "bugs": {
+    "url": "https://github.com/smerth/gatsby-source-gh-readme/issues"
+  },
+  "homepage": "https://github.com/smerth/gatsby-source-gh-readme",
+  "repository": "https://github.com/smerth/gatsby-source-gh-readme",
   "author": "Stephen Merth <stephen.merth@gmail.com> (https://smerth.github.io/)",
   "license": "MIT"
 }
