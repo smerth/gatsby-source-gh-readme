@@ -1,8 +1,7 @@
 {
   "name": "gatsby-source-gh-readme",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This GatsbyJS plugin queries GitHub's GraphQL API for a given user account. It fetches the README.md file contents on the master branch of each repository and creates nodes in GatsbyJS which can be queried using GraphQL. Because the mime type for the content of these nodes is set to 'text/markdown' they are further processed into MarkdownRemark nodes if 'gatsby-transformer-remark' is implemented. This makes the README.md contents available in GatsbyJS as processed HTML",
-  "main": "src/gatsby-node.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,9 +18,6 @@
   "bugs": {
     "url": "https://github.com/smerth/gatsby-source-gh-readme/issues"
   },
-  "files": [
-    "src"
-  ],
   "homepage": "https://github.com/smerth/gatsby-source-gh-readme",
   "repository": "https://github.com/smerth/gatsby-source-gh-readme",
   "author": "Stephen Merth <stephen.merth@gmail.com> (https://smerth.github.io/)",
