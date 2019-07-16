@@ -39,8 +39,7 @@ exports.sourceNodes = (
   };
 
   // Gatsby expects sourceNodes to return a promise
-  return github.query(
-    `
+  return github.query(`
     query {
       viewer {
         name
@@ -68,9 +67,8 @@ exports.sourceNodes = (
           }
         }
       }
-    `,
-    null,
-    (res, err) => {
+    `)
+    .then((res) => {
       const { data } = res;
       const nodes = data.viewer.repositories.edges;
 
@@ -87,6 +85,5 @@ exports.sourceNodes = (
           createNode(nodeData);
         }
       });
-    }
-  ); // end github.query
+    });
 }; // exports.sourceNodes
