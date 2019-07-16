@@ -70,7 +70,7 @@ require("dotenv").config({
 ```javascript
   plugins: [
     {
-      resolve: "gatsby-source-all-readme",
+      resolve: "gatsby-source-gh-readme",
       options: {
         gitHubToken: `${process.env.GITHUB_API_TOKEN}`
       }
