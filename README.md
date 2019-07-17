@@ -1,10 +1,10 @@
 # gatsby-source-gh-readme
 
-A Gatsby source plugin for sourcing the `README.md` files at the root of the master branches of  each of your Github repositories into your Gatsby application.
+A Gatsby source plugin for sourcing the `README.md` files at the root of the master branches of each of your Github repositories into your Gatsby application.
 
 The plugin creates markdown `File` nodes from the readme file content. If `gatsby-tranformer-remark` is installed it will transform these markdown file nodes into `MarkdownRemark` nodes from which you can query an HTML representation of the markdown.
 
-
+> **Nota Bene**: Currently this plugin only fetches readme files named with all caps "README.md" not "readme.md". I am looking into how to fetch both upper and lower case named readme files.
 
 ## Install
 
@@ -12,15 +12,11 @@ The plugin creates markdown `File` nodes from the readme file content. If `gatsb
 npm install --save gatsby-source-gh-readme
 ```
 
-
-
 ## How to use
-
-
 
 ### Provide Github Credentials
 
-@ github.com > account > developer settings > personal access token, create a token and give access to read data from your repositories.  Choose to restrict access to only public repos if that's what you want.
+@ github.com > account > developer settings > personal access token, create a token and give access to read data from your repositories. Choose to restrict access to only public repos if that's what you want.
 
 Amend your `.gitignore` file to exclude `.env` files
 
@@ -61,8 +57,6 @@ require("dotenv").config({
 });
 ```
 
-
-
 ### Make GatsbyJS aware of the plugin
 
 @ `gatsby-config.js`, add the plugin
@@ -77,11 +71,9 @@ require("dotenv").config({
     },...
 ```
 
-
-
 ## How to Query
 
-You can query for the readme file content like this, where `$name` is the name of the repository.  
+You can query for the readme file content like this, where `$name` is the name of the repository.
 
 ```graphql
 export const pageQuery = graphql`
@@ -100,7 +92,4 @@ export const pageQuery = graphql`
 `;
 ```
 
-Note that MarkdownRemark must be installed on the site for the readme nodes to be processed into usable html.  Because a MarkdownRemark node is created for each githubReadme node that is added to GatsbyJS, you can get access the content you want through childMarkdownRemark.
-
-
-
+Note that MarkdownRemark must be installed on the site for the readme nodes to be processed into usable html. Because a MarkdownRemark node is created for each githubReadme node that is added to GatsbyJS, you can get access the content you want through childMarkdownRemark.
