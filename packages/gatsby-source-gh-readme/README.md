@@ -57,6 +57,8 @@ require("dotenv").config({
 });
 ```
 
+> Note: dotenv is part of GatsbyJS so you can require it without installing it.
+
 ### Make GatsbyJS aware of the plugin
 
 @ `gatsby-config.js`, add the plugin
