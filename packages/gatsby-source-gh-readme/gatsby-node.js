@@ -1,7 +1,6 @@
-/* This GatsbyJS plugin queries GitHub's GraphQL API for a given user account. 
-It fetches the README.md file at the root of the master branch of each repository 
-and creates a MarkdownRemark node for each in GatsbyJS.
-Note - gatsby-transformer-remark must be implemented in the host GatsbyJS site.
+/* This GatsbyJS plugin queries GitHub's GraphQL API for a given user account. It fetches the README.md file at the root of the master branch of each repository and creates a MarkdownRemark node for each in GatsbyJS.
+
+Note - gatsby-transformer-remark must be implemented in the host GatsbyJS site in order for the markdown to be transpiled to HTML.
  */
 
 const GithubGraphQLApi = require("node-github-graphql");
@@ -39,7 +38,9 @@ exports.sourceNodes = (
   };
 
   // Gatsby expects sourceNodes to return a promise
-  return github.query(`
+  return github
+    .query(
+      `
     query {
       viewer {
         name
@@ -67,8 +68,9 @@ exports.sourceNodes = (
           }
         }
       }
-    `)
-    .then((res) => {
+    `
+    )
+    .then(res => {
       const { data } = res;
       const nodes = data.viewer.repositories.edges;
 
