@@ -9,10 +9,16 @@ The plugin creates markdown `File` nodes from the readme file content. If `gatsb
 ## Install
 
 ```bash
+yarn add gatsby-source-gh-readme
+```
+
+or
+
+```bash
 npm install --save gatsby-source-gh-readme
 ```
 
-## How to use
+## Usage
 
 ### Provide Github Credentials
 
@@ -73,25 +79,63 @@ require("dotenv").config({
     },...
 ```
 
-## How to Query
+### Query for nodes
 
-You can query for the readme file content like this, where `$name` is the name of the repository.
+Once you have this plugin installed on your GatsbyJS site a GraphQL query to Github will pull in the readme file content and create nodes on your Gatsby data graph at GatsbyJS build time.
 
-```graphql
-export const pageQuery = graphql`
-  query githubProjectByTitle($name: String!) {
-    githubReadme(title: { eq: $name }) {
-      childMarkdownRemark {
-        timeToRead
-        html
-        headings {
-          value
-          depth
-        }
-      }
+You will find a list of all the readme contents under `allGithubReadme`
+
+So you can query for all readme nodes like this
+
+```javascript
+query MyQuery {
+  allGithubReadme(sort: {order: ASC, fields: title}) {
+    totalCount
+    nodes {
+      id
+      title
+      description
     }
   }
-`;
+}
 ```
 
-Note that MarkdownRemark must be installed on the site for the readme nodes to be processed into usable html. Because a MarkdownRemark node is created for each githubReadme node that is added to GatsbyJS, you can get access the content you want through childMarkdownRemark.
+> If the totalCound doesn't match the number of repos on your account it may be for one of the following reasons:
+>
+> - some of your repos don't have a readme file on the master branch
+> - the readme file may be named "readme" instead of "README"
+> - you may have some private repos that will only be available if you have issued yourself a key with private permissions.
+
+Individual nodes are found on `githubReadme`. To query for the readme of a particular repo you can try:
+
+```javascript
+query githubProjectByTitle($name: String!) {
+  githubReadme(title: {eq: $name}) {
+    title
+    description
+    readme
+  }
+}
+```
+
+with these query variables
+
+```javascript
+{
+  "name":"REPO-NAME-GOES-HERE"
+}
+```
+
+In these queries the readme content is a **blob of markdown text** in the field `readme`
+
+### Create pages on your site
+
+Note that MarkdownRemark must be installed on the site for the readme nodes to be processed into usable html.
+
+Because a MarkdownRemark node is created for each githubReadme node that is added to the GatsbyJS data graph, you can get access the content you want through childMarkdownRemark.
+
+## Contribute
+
+Any ideas to make this more useful or stable are welome. See the github project page [gatsby-source-gh-readme](https://github.com/smerth/gatsby-source-gh-readme) for more information.
+
+## 
