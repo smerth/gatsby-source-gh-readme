@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-gh-readme",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "This GatsbyJS plugin queries GitHub's GraphQL API for a given user account. It fetches the README.md file contents on the master branch of each repository and creates nodes in GatsbyJS which can be queried using GraphQL. Because the mime type for the content of these nodes is set to 'text/markdown' they are further processed into MarkdownRemark nodes if 'gatsby-transformer-remark' is implemented. This makes the README.md contents available in GatsbyJS as processed HTML",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
