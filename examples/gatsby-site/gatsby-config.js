@@ -11,6 +11,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-source-gh-readme",
+      options: {
+        gitHubToken: `${process.env.GITHUB_API_TOKEN}`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
